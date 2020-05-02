@@ -16,6 +16,7 @@ public class EuroToInr {
 	static WebDriver driver;
 	static Double currentValue;
 	static Double expectedValue=80.00;
+	
 	public static void main(String[] args) throws InterruptedException 
 	{
 
@@ -33,7 +34,7 @@ public class EuroToInr {
 
 	public static void getValue() throws InterruptedException
 	{
-		Double currentValue=Double.parseDouble(driver.findElement(By.id("cc-amount-to")).getAttribute("value"));
+		currentValue=Double.parseDouble(driver.findElement(By.id("cc-amount-to")).getAttribute("value"));
 		System.out.println(currentValue);
 		if(currentValue >= expectedValue)
 		{ 	getFlag();

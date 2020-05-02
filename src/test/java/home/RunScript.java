@@ -7,6 +7,6 @@ public class RunScript extends EuroToInr {
   public void f() throws InterruptedException {
 	  login();
 		getValue();
-		closeBrowser();
+		//closeBrowser();
   }
 }
