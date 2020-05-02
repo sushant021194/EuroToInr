@@ -15,32 +15,47 @@ public class EuroToInr {
 	public static String flag;
 	static WebDriver driver;
 	static Double currentValue;
+	static Double expectedValue=80.00;
 	public static void main(String[] args) throws InterruptedException 
 	{
 
 		// TODO Auto-generated method stub
-		Double expectedValue=80.00;
+		
+		
+
+		
+		
+	}
+	public static void closeBrowser()
+	{
+		driver.close();	
+	}
+
+	public static void getValue() throws InterruptedException
+	{
+		Double currentValue=Double.parseDouble(driver.findElement(By.id("cc-amount-to")).getAttribute("value"));
+		System.out.println(currentValue);
+		if(currentValue >= expectedValue)
+		{ 	getFlag();
+		if(flag.equals("True")) 
+		{
+			loginWay2Sms();
+			sendSms();
+		}
+	}
+	else
+	{
+		setFlag("True");
+	}
+
+	}
+
+	public static void login()
+	{
 		String driverpath="Common/chromedriver.exe";
 		System.setProperty("webdriver.chrome.driver", driverpath);
 		driver=new ChromeDriver();
 		driver.get("https://transferwise.com/gb/currency-converter/eur-to-inr-rate");
-		Double currentValue=Double.parseDouble(driver.findElement(By.id("cc-amount-to")).getAttribute("value"));
-		System.out.println(currentValue);
-
-		if(currentValue >= expectedValue)
-		{ 	getFlag();
-			if(flag.equals("True")) 
-			{
-				loginWay2Sms();
-				sendSms();
-			}
-		}
-		else
-		{
-			setFlag("True");
-		}
-
-		driver.close();	
 	}
 	public static void sendSms()
 	{
